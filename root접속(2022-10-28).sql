@@ -101,5 +101,22 @@ ORDER BY CountryCode;
 
 /*
 city table 에서 각 국가별 인구 평균을 계산하고 인구 평균이 5만 이상인 국가만 조회하기
+
+먼저 국가별 인구평균 계산하고
+계산된 인구평균이 5만 이상인 경우 
+avg() 함수로 게산된 결과에 조건을 부여하기 때문에
+이러한 경우는 WHERE 가 아니고, HAVING 절을 GROUP BY 다음에 둔다 
 */
-SELECT 
+SELECT CountryCode, AVG(Population)
+FROM city
+GROUP BY CountryCode
+HAVING AVG(Population) >= 50000;
+
+/*
+각 국가별(그룹을 묶어서)로 가장 인구가 많은 도시는?
+*/
+SELECT CountryCode, Name, MAX(Population)
+FROM city
+GROUP BY CountryCode
+ORDER BY max(population) DESC;
+
