@@ -120,3 +120,19 @@ FROM city
 GROUP BY CountryCode
 ORDER BY max(population) DESC;
 
+select * from city;
+select * from country;
+
+/*
+city table 과 country table 을 참조하여
+인구가 1만 이상 5만 이하인도시의 국가정보를 같이 확인하고싶다 
+*/
+
+SELECT country.Name
+FROM city JOIN country ON city.CountryCode = country.Code
+WHERE city.Population BETWEEN 10000 AND 50000;
+
+
+
+
+
